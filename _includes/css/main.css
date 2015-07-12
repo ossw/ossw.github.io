@@ -452,8 +452,25 @@ header .subpage-intro-text .name {
     font-weight: 700;
 }
 
+section h2 {
+  	margin: 0;
+  	font-size: 2em;
+}
+hr.star-light, hr.star-primary {
+  	margin: 15px auto 30px;
+  	max-width: 250px;
+}
+
 @media(min-width:768px) {
     header .subpage-intro-text .name {
         font-size: 3em;
     }
+    section h2 {
+  		margin: 0;
+  		font-size: 3em;
+	}
+	hr.star-light, hr.star-primary {
+  		margin: 25px auto 30px;
+  		max-width: 350px;
+  	}
 }

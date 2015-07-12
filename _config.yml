@@ -5,6 +5,10 @@ email: ossw@althink.com
 url: https://ossw.github.io
 description: "Open Source Sport Watch"
 
+collections:
+  instructions:
+    output: true
+
 # Contact form: comment the line below if you want to stick with the default PHP contact form
 contact: static
 

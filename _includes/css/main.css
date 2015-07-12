@@ -76,7 +76,7 @@ header {
 
 header .container {
     padding-top: 100px;
-    padding-bottom: 50px;
+    padding-bottom: 40px;
 }
 
 header img {
@@ -99,12 +99,12 @@ header .intro-text .skills {
 
 @media(min-width:768px) {
     header .container {
-        padding-top: 200px;
-        padding-bottom: 100px;
+        padding-top: 130px;
+        padding-bottom: 50px;
     }
 
     header .intro-text .name {
-        font-size: 4.75em;
+        font-size: 4em;
     }
 
     header .intro-text .skills {
@@ -433,13 +433,6 @@ footer .footer-below {
     transform: rotate(90deg);
 }
 
-@media(min-width:768px) {
-    header .container {
-        padding-top: 130px;
-        padding-bottom: 50px;
-    }
-}
-
 .instruction-link {
 	font-weight: 500;
 }
@@ -456,9 +449,14 @@ section h2 {
   	margin: 0;
   	font-size: 2em;
 }
+
 hr.star-light, hr.star-primary {
   	margin: 15px auto 30px;
   	max-width: 250px;
+}
+
+h1, .h1 {
+  font-size: 29px;
 }
 
 @media(min-width:768px) {
@@ -467,10 +465,13 @@ hr.star-light, hr.star-primary {
     }
     section h2 {
   		margin: 0;
-  		font-size: 3em;
+  		font-size: 2.5em;
 	}
 	hr.star-light, hr.star-primary {
   		margin: 25px auto 30px;
-  		max-width: 350px;
+  		max-width: 300px;
   	}
+  	h1, .h1 {
+	  font-size: 39px;
+	}
 }

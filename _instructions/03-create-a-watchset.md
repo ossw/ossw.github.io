@@ -12,7 +12,7 @@ Every screen contains controls and actions assigned to the events.
 
 Here you can see the simplest watchset that contains only one screen. This screen doesn't have any controls and handles only one event - closes the watchset when back button is pressed.
 
-{% highlight json linenos %}
+{% highlight javascript linenos %}
 {
 	"type": "watchset",
 	"name": "sample watchset",
@@ -45,7 +45,7 @@ Every file with watchset definition should contain those parameters:
 
 At this stage watchset data contains only list of screens. In future versions there will be also possibility to define static content (images, fonts) that will be used on the screens. To define multiple screens you have to separate them with a comma.
 
-{% highlight json linenos %}
+{% highlight javascript linenos %}
 {
 	"type": "watchset",
 	"name": "sample watchset",
@@ -87,7 +87,7 @@ One screen may contain up to 255 controls and unlimited number of unique actions
 - the second one toggles backlight when the back button is long pressed
 - the last one close the watchset when the back button is short pressed
 
-{% highlight json linenos %}
+{% highlight javascript linenos %}
 {
 	"type": "watchset",
 	"name": "sample watchset",
@@ -131,7 +131,7 @@ There are few types of controls that can be added to the screen. Every type has 
 
 Number control shows a numeric value. This value can be integer or decimal number. Sample definition of number control looks like this:
 
-{% highlight json linenos %}
+{% highlight javascript linenos %}
 {
 	"type": "number",
 	"numberRange": "0-99",
@@ -185,7 +185,7 @@ Number control properties are as follows:
 
 Text control renders a text using given font. 
 
-{% highlight json linenos %}
+{% highlight javascript linenos %}
 {
 	"type": "text",
 	"position": {"x": 1, "y": 10},
@@ -217,7 +217,7 @@ Text control properties are as follows:
 
 Progress control renders a horizontal progress bar. 
 
-{% highlight json linenos %}
+{% highlight javascript linenos %}
 {
 	"type": "progress",
 	"maxValue": 60,
@@ -251,7 +251,7 @@ Every control definition contains a "source" property that defines what value sh
 
 Internal data source is available in every mode. Sample definition looks like this:
 
-{% highlight json linenos %}
+{% highlight javascript %}
 "source": {"type": "internal", "property": "hour"}
 {% endhighlight %}
 
@@ -275,7 +275,7 @@ Available internal properties:
 
 Extension data source is available only in peripheral mode. Sample definition looks like this:
 
-{% highlight json linenos %}
+{% highlight javascript %}
 "source": {"type": "extension", "extensionId": "com.althink.android.ossw.plugins.musicplayer", "property": "artist"}
 {% endhighlight %}
 
@@ -290,7 +290,7 @@ Extension data source properties are as follows:
 
 Sensor data source is available only in central mode. Sample definition looks like this:
 
-{% highlight json linenos %}
+{% highlight javascript %}
 "source": {"type": "sensor", "property": "heartRate"}
 {% endhighlight %}
 
@@ -308,7 +308,7 @@ Available sensor properties:
 
 You can assign actions to given events. Sample actions definition looks like this:
 
-{% highlight json linenos %}
+{% highlight javascript linenos %}
 {
 "actions": {
 	"button_up_long": {"action": "toggleColors"},
@@ -333,11 +333,11 @@ Available actions:
 - toggleBacklight - toggle backlight
 - toggleColors - toggle colors
 - showScreen - show watchset screen identified by screenId property
-{% highlight json linenos %}
+{% highlight javascript %}
 {"action": "showScreen", "screenId": "second screen"}
 {% endhighlight %}
 - extensionFunction - invoke function from android application extension, check extension documentation for available functions
-{% highlight json linenos %}
+{% highlight javascript %}
 {"action": "extensionFunction",  "extensionId": "com.althink.android.ossw.plugins.musicplayer", "function": "nextTrack"}
 {% endhighlight %}
 - settings - show settings

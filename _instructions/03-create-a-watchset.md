@@ -12,7 +12,7 @@ Every screen contains controls and actions assigned to the events.
 
 Here you can see the simplest watchset that contains only one screen. This screen doesn't have any controls and handles only one event - closes the watchset when back button is pressed.
 
-{% highlight javascript linenos %}
+{% highlight json linenos %}
 {
 	"type": "watchset",
 	"name": "sample watchset",
@@ -24,7 +24,7 @@ Here you can see the simplest watchset that contains only one screen. This scree
 				"controls": [
 				],
 				"actions": {
-					"button_back_short": {"action": "close"}
+					"button_back_short": { "action": "close" }
 				}
 			}
 		]
@@ -45,7 +45,7 @@ Every file with watchset definition should contain those parameters:
 
 At this stage watchset data contains only list of screens. In future versions there will be also possibility to define static content (images, fonts) that will be used on the screens. To define multiple screens you have to separate them with a comma.
 
-{% highlight javascript linenos %}
+{% highlight json linenos %}
 {
 	"type": "watchset",
 	"name": "sample watchset",
@@ -57,7 +57,7 @@ At this stage watchset data contains only list of screens. In future versions th
 				"controls": [
 				],
 				"actions": {
-					"button_back_short": {"action": "close"}
+					"button_back_short": { "action": "close" }
 				}
 			},
 			{
@@ -65,7 +65,7 @@ At this stage watchset data contains only list of screens. In future versions th
 				"controls": [
 				],
 				"actions": {
-					"button_back_short": {"action": "close"}
+					"button_back_short": { "action": "close" }
 				}
 			}
 		]
@@ -87,7 +87,7 @@ One screen may contain up to 255 controls and unlimited number of unique actions
 - the second one toggles backlight when the back button is long pressed
 - the last one close the watchset when the back button is short pressed
 
-{% highlight javascript linenos %}
+{% highlight json linenos %}
 {
 	"type": "watchset",
 	"name": "sample watchset",
@@ -100,22 +100,48 @@ One screen may contain up to 255 controls and unlimited number of unique actions
 			        {
 			    		"type": "number",
 			    		"numberRange": "0-99",
-			    		"position": {"x": 4, "y": 4},
-			    		"style": {"type": "generated", "thickness": 8, "width": 66, "height": 76, "space": 4, "leftPadded": true},
-			    		"source": {"type": "internal", "property": "hour"}
+			    		"position": {
+			    			"x": 4, 
+			    			"y": 4
+			    		},
+			    		"style": {
+			    			"type": "generated", 
+			    			"thickness": 8, 
+			    			"width": 66, 
+			    			"height": 76, 
+			    			"space": 4, 
+			    			"leftPadded": true
+			    		},
+			    		"source": {
+			    			"type": "internal", 
+			    			"property": "hour"
+			    		}
 			    	},
 			    	{
 			    		"type": "number",
 			    		"numberRange": "0-99",
-			    		"position": {"x": 4, "y": 85},
-			    		"style": {"type": "generated", "thickness": 6, "width": 66, "height": 76, "space": 4, "leftPadded": true},
-			    		"source": {"type": "internal", "property": "minutes"}
+			    		"position": {
+			    			"x": 4, 
+			    			"y": 85
+			    		},
+			    		"style": {
+			    			"type": "generated", 
+			    			"thickness": 6, 
+			    			"width": 66, 
+			    			"height": 76, 
+			    			"space": 4, 
+			    			"leftPadded": true
+			    		},
+			    		"source": {
+			    			"type": "internal", 
+			    			"property": "minutes"
+			    		}
 			    	}
 			    ],
 				"actions": {
-					"button_up_long": {"action": "toggleColors"},
-					"button_back_long": {"action": "toggleBacklight"},
-					"button_back_short": {"action": "close"}
+					"button_up_long": { "action": "toggleColors" },
+					"button_back_long": { "action": "toggleBacklight" },
+					"button_back_short": { "action": "close" }
 				}
 			}
 		]
@@ -131,13 +157,26 @@ There are few types of controls that can be added to the screen. Every type has 
 
 Number control shows a numeric value. This value can be integer or decimal number. Sample definition of number control looks like this:
 
-{% highlight javascript linenos %}
+{% highlight json linenos %}
 {
 	"type": "number",
 	"numberRange": "0-99",
-	"position": {"x": 4, "y": 4},
-	"style": {"type": "generated", "thickness": 8, "width": 66, "height": 76, "space": 4, "leftPadded": true},
-	"source": {"type": "internal", "property": "hour"}
+	"position": {
+		"x": 4, 
+		"y": 4
+	},
+	"style": {
+		"type": "generated", 
+		"thickness": 8, 
+		"width": 66, 
+		"height": 76, 
+		"space": 4, 
+		"leftPadded": true
+	},
+	"source": {
+		"type": "internal", 
+		"property": "hour"
+	}
 }
 {% endhighlight %}
 
@@ -185,14 +224,27 @@ Number control properties are as follows:
 
 Text control renders a text using given font. 
 
-{% highlight javascript linenos %}
+{% highlight json linenos %}
 {
 	"type": "text",
-	"position": {"x": 1, "y": 10},
-	"size": {"width": 143, "height": 27},
-	"font": {"type": "builtin", "name": "normalRegular"},
+	"position": {
+		"x": 1, 
+		"y": 10
+	},
+	"size": {
+		"width": 143, 
+		"height": 27
+	},
+	"font": {
+		"type": "builtin", 
+		"name": "normalRegular"
+	},
 	"style": {"horizontalAlign": "center"},
-	"source": {"type": "extension", "extensionId": "com.althink.android.ossw.plugins.sample", "property": "stringParam"}
+	"source": {
+		"type": "extension", 
+		"extensionId": "com.althink.android.ossw.plugins.sample", 
+		"property": "stringParam"
+	}
 }
 {% endhighlight %}
 
@@ -217,14 +269,23 @@ Text control properties are as follows:
 
 Progress control renders a horizontal progress bar. 
 
-{% highlight javascript linenos %}
+{% highlight json linenos %}
 {
 	"type": "progress",
 	"maxValue": 60,
-	"position": {"x": 0, "y": 165},
-	"size": {"width": 144, "height": 2},
+	"position": {
+		"x": 0, 
+		"y": 165
+	},
+	"size": {
+		"width": 144, 
+		"height": 2
+	},
 	"style": {"border": 0},
-	"source": {"type": "internal", "property": "seconds"}
+	"source": {
+		"type": "internal", 
+		"property": "seconds"
+	}
 }
 {% endhighlight %}
 
@@ -251,8 +312,13 @@ Every control definition contains a "source" property that defines what value sh
 
 Internal data source is available in every mode. Sample definition looks like this:
 
-{% highlight javascript %}
-"source": {"type": "internal", "property": "hour"}
+{% highlight json %}
+{
+	"source": {
+		"type": "internal", 
+		"property": "hour"
+	}
+}
 {% endhighlight %}
 
 Extension data source properties are as follows:
@@ -275,8 +341,14 @@ Available internal properties:
 
 Extension data source is available only in peripheral mode. Sample definition looks like this:
 
-{% highlight javascript %}
-"source": {"type": "extension", "extensionId": "com.althink.android.ossw.plugins.musicplayer", "property": "artist"}
+{% highlight json %}
+{
+	"source": {
+		"type": "extension", 
+		"extensionId": "com.althink.android.ossw.plugins.musicplayer", 
+		"property": "artist"
+	}
+}
 {% endhighlight %}
 
 Extension data source properties are as follows:
@@ -290,8 +362,13 @@ Extension data source properties are as follows:
 
 Sensor data source is available only in central mode. Sample definition looks like this:
 
-{% highlight javascript %}
-"source": {"type": "sensor", "property": "heartRate"}
+{% highlight json %}
+{
+	"source": { 
+		"type": "sensor", 
+		"property": "heartRate" 
+	}
+}
 {% endhighlight %}
 
 Sensor data source properties are as follows:
@@ -308,12 +385,12 @@ Available sensor properties:
 
 You can assign actions to given events. Sample actions definition looks like this:
 
-{% highlight javascript linenos %}
+{% highlight json linenos %}
 {
 "actions": {
-	"button_up_long": {"action": "toggleColors"},
-	"button_back_long": {"action": "toggleBacklight"},
-	"button_back_short": {"action": "close"}
+	"button_up_long": { "action": "toggleColors" },
+	"button_back_long": { "action": "toggleBacklight" },
+	"button_back_short": { "action": "close" }
 }
 {% endhighlight %}
 
@@ -331,14 +408,33 @@ Available events:
 Available actions:
 
 - toggleBacklight - toggle backlight
+{% highlight json %}
+{ "action": "toggleBacklight" }
+{% endhighlight %}
 - toggleColors - toggle colors
+{% highlight json %}
+{ "action": "toggleColors" }
+{% endhighlight %}
 - showScreen - show watchset screen identified by screenId property
-{% highlight javascript %}
-{"action": "showScreen", "screenId": "second screen"}
+{% highlight json %}
+{
+	"action": "showScreen", 
+	"screenId": "second screen"
+}
 {% endhighlight %}
 - extensionFunction - invoke function from android application extension, check extension documentation for available functions
-{% highlight javascript %}
-{"action": "extensionFunction",  "extensionId": "com.althink.android.ossw.plugins.musicplayer", "function": "nextTrack"}
+{% highlight json %}
+{
+	"action": "extensionFunction",  
+	"extensionId": "com.althink.android.ossw.plugins.musicplayer", 
+	"function": "nextTrack"
+}
 {% endhighlight %}
 - settings - show settings
+{% highlight json %}
+{ "action": "settings" }
+{% endhighlight %}
 - close - close a watchset
+{% highlight json %}
+{ "action": "close" }
+{% endhighlight %}

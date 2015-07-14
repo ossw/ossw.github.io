@@ -14,7 +14,7 @@ You can check a source code of sample extension that is available on [github](ht
 ##Extension definition
 One of the first decisions is to choose a package name for the extension (in the sample plugin it's com.althink.android.ossw.plugins.sample). I will reference this name with %PACKAGE_NAME% placeholder.
 
-Every extension AndroidManifest.xml should look like this:
+Every extension's AndroidManifest.xml should look like this:
 {% highlight xml linenos %}
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -56,16 +56,55 @@ Every extension AndroidManifest.xml should look like this:
 {% endhighlight %}
 
 There are three important definitions:
+
 - extension service (required)
 - extension content provider (required)
 - extension settings activity (optional)
 
-Extension service is a backend service that is responsible for fetching extension properties and handling extension function invocations.
+##Extension Service
 
-Extension content provider is a content provider that expose extension API and extension properties (if any). Extension content provider should handle given URIs:
+Extension service is a backend service that is responsible for updating extension properties and handling extension function invocations.
+
+The simplest extension service implementation will look like this:
+
+{% highlight java linenos %}
+public class SamplePluginService extends Service {
+    private final Messenger mMessenger = new Messenger(new OperationHandler());
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        // perform some initialization
+        return mMessenger.getBinder();
+    }
+    
+    private class OperationHandler extends Handler {
+
+        public OperationHandler() {
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            switch (msg.what) {
+                // handle function invocation, msg.what contains function identifier
+                
+                // optional function parameter can be accessed by invoking:
+                // String parameter = msg.getData().getString("parameter");
+            }
+        }
+    }
+}
+{% endhighlight %}
+
+##Extension Content Provider
+
+Extension content provider is a content provider that expose extension API and extension properties (if any). 
+
+Extension content provider should handle given URIs:
 
 - content://%PACKAGE_NAME%/api/properties - table with definition of extension properties, table columns are as follows:
-	- _id (int) - property id,
+	- _id (int) - property identifier,
     - name (String) - property technical name (e.g. heartRate)
     - description (String) - property description (e.g. Heart rate)
     - type (String) - property type:
@@ -73,7 +112,20 @@ Extension content provider is a content provider that expose extension API and e
     	- FLOAT
     	- STRING
 - content://%PACKAGE_NAME%/api/functions - table with definition of extension functions, table columns are as follows:
-	- _id (int) - property id,
-    - name (String) - property technical name (e.g. heartRate)
-    - description (String) - property description (e.g. Heart rate)
-- content://%PACKAGE_NAME%/properties - table with extension property values, table columns are extension property names and values are extension property values.
+	- _id (int) - function identifier,
+    - name (String) - function technical name (e.g. nextTrack)
+    - description (String) - property description (e.g. Next track)
+- content://%PACKAGE_NAME%/properties - table with extension property values, table columns are extension property names and first row values are extension property values. Only one row should be returned.
+
+##Extension Settings Activity
+
+Extension settings activity is a standard android PreferenceActivity that is responsible for extension configuration.
+
+Extension settings activity should handle "%PACKAGE_NAME%.config" intent action, for sample extension it's "com.althink.android.ossw.plugins.sample.config". Intent filter definition should look like this:
+
+{% highlight xml linenos %}
+<intent-filter>
+    <action android:name="%PACKAGE_NAME%.config" />
+    <category android:name="android.intent.category.DEFAULT" />
+</intent-filter>
+{% endhighlight %}

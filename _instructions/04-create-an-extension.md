@@ -62,7 +62,7 @@ There are three important definitions:
 
 Extension service is a backend service that is responsible for fetching extension properties and handling extension function invocations.
 
-Extension content provider is a content provider that expose extension API and extension properties (if any). Extension content provider should be handle given URIs:
+Extension content provider is a content provider that expose extension API and extension properties (if any). Extension content provider should handle given URIs:
 
 - content://%PACKAGE_NAME%/api/properties - table with definition of extension properties, table columns are as follows:
 	- _id (int) - property id,

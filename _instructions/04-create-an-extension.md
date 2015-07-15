@@ -12,7 +12,11 @@ Extension (or plugin) is an android application that integrates with OSSW androi
 You can check a source code of sample extension that is available on [github](https://github.com/ossw/ossw-android-sample-plugin)
 
 ##Extension definition
-One of the first decisions is to choose a package name for the extension (in the sample plugin it's com.althink.android.ossw.plugins.sample). I will reference this name with %PACKAGE_NAME% placeholder.
+One of the first decisions is to choose a package name for the extension, in the sample plugin it's:
+{% highlight text %}
+com.althink.android.ossw.plugins.sample
+{% endhighlight %}
+I will reference this name with %PACKAGE_NAME% placeholder.
 
 Every extension's AndroidManifest.xml should look like this:
 {% highlight xml linenos %}
@@ -99,29 +103,46 @@ public class SamplePluginService extends Service {
 
 ##Extension Content Provider
 
-Extension content provider is a content provider that expose extension API and extension properties (if any). 
+Extension content provider is a content provider that expose extension API and extension properties (if any). Extension content provider should handle given URIs:
 
-Extension content provider should handle given URIs:
+####Extension properties
 
-- content://%PACKAGE_NAME%/api/properties - table with definition of extension properties, table columns are as follows:
-	- _id (int) - property identifier,
-    - name (String) - property technical name (e.g. heartRate)
-    - description (String) - property description (e.g. Heart rate)
-    - type (String) - property type:
-    	- INTEGER
-    	- FLOAT
-    	- STRING
-- content://%PACKAGE_NAME%/api/functions - table with definition of extension functions, table columns are as follows:
-	- _id (int) - function identifier,
-    - name (String) - function technical name (e.g. nextTrack)
-    - description (String) - property description (e.g. Next track)
-- content://%PACKAGE_NAME%/properties - table with extension property values, table columns are extension property names and first row values are extension property values. Only one row should be returned.
+	content://%PACKAGE_NAME%/api/properties
+	
+Table with definition of extension properties, every row represents single property, table columns are as follows:
+
+- _id (int) - property identifier,
+- name (String) - property technical name (e.g. heartRate)
+- description (String) - property description (e.g. Heart rate)
+- type (String) - property type:
+    - INTEGER
+    - FLOAT
+    - STRING
+    
+####Extension functions
+
+	content://%PACKAGE_NAME%/api/functions
+	
+Table with definition of extension functions, every row represents single function, table columns are as follows:
+
+- _id (int) - function identifier,
+- name (String) - function technical name (e.g. nextTrack)
+- description (String) - property description (e.g. Next track)
+
+####Extension property values
+	content://%PACKAGE_NAME%/properties
+	
+Table with extension property values, table columns are extension property names and first row values are extension property values. Only one row should be returned.
 
 ##Extension Settings Activity
 
 Extension settings activity is a standard android PreferenceActivity that is responsible for extension configuration.
 
-Extension settings activity should handle "%PACKAGE_NAME%.config" intent action, for sample extension it's "com.althink.android.ossw.plugins.sample.config". Intent filter definition should look like this:
+Extension settings activity should handle "%PACKAGE_NAME%.config" intent action, for sample extension it's 
+
+	com.althink.android.ossw.plugins.sample.config
+	
+Intent filter definition should look like this:
 
 {% highlight xml linenos %}
 <intent-filter>

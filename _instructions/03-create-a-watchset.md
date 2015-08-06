@@ -438,3 +438,13 @@ Available actions:
 {% highlight json %}
 { "action": "close" }
 {% endhighlight %}
+
+## Example Watchsets
+
+- heartrate-central.json
+- heartrate-peripheral.json
+- musicplayer.json
+- sampleWatchset.json
+- tasker.json
+
+are available on <https://github.com/ossw/ossw-firmware-s120/releases>

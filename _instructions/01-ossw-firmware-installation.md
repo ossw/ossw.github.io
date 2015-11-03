@@ -13,13 +13,17 @@ You will need:
 
 - Android 4.3+ Phone with [nRF Toolbox](https://play.google.com/store/apps/details?id=no.nordicsemi.android.nrftoolbox&hl=en) installed
 - Latest [ossw-installer](https://github.com/ossw/ossw-installer/releases) release (most recent is ossw-installer-combined-0.3.bin)
-- Latest [ossw-firmware-s120](https://github.com/ossw/ossw-firmware-s120/releases) release (most recent is ossw-firmware-0.2.0.zip)
+- Latest [ossw-firmware-s120](https://github.com/ossw/ossw-firmware-s120/releases) release (most recent is ossw-firmware-0.4.1.zip)
 
-Save those two files as it is (don't extract the zip) on your phone and start nRF Toolbox. Select DFU and turn your bluetooth on. Important: Put your watch in OTA Mode. First select the binary installer file and pick the Weloop Tommy/Chronos Eco watch as device. You have to choose "Application" and "Init packet: No" when uploading this file.
+Save those two files as it is (don't extract the zip) on your phone and start nRF Toolbox. Select DFU and turn your bluetooth on.
 
-Wait patiently while the update is doing its magic.
+Put your watch in OTA Mode. To enter OTA mode just connect a charging cable, press all 3 buttons on the right side of the watch and release top and bottom while keeping middle button pressed 12 seconds more.
 
-Next install the firmware: You have to choose "Distribution packet (ZIP)" when uploading this file. When everything is done go outside and make a happy dance :)
+Install new bootloader:
+SELECT FILE -> Application -> select ossw-installer-combined-?.?.bin -> Init packet: No, select device and click UPLOAD. Wait patiently while new bootloader is uploaded.
+
+Install the firmware:
+SELECT FILE -> Distribution packet (ZIP) -> ossw-firmware-?.?.?.zip, select OSSW device and click UPLOAD
 
 ##Problems while updating...
 
